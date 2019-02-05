@@ -4,8 +4,8 @@ from xml.dom import minidom
 
 REPO = "https://github.com/EFForg/https-everywhere.git"
 
-temp_path = tempfile.gettempdir()
-path = os.path.join(temp_path, 'https-everywhere')
+current_path = os.path.dirname(os.path.realpath(__file__))
+path = os.path.join(current_path, 'https-everywhere')
 
 if os.path.exists(path):
     os.system('git -C ' + path + ' pull ' + REPO)
@@ -36,7 +36,7 @@ for file in files:
 
         hosts.add(host)
 
-domain_path = os.path.join(temp_path, 'domains.txt')
+domain_path = os.path.join(current_path, 'domains.txt')
 with open(domain_path, 'w') as file:
     file.write('\n'.join(hosts))
 
