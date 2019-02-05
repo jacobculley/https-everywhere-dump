@@ -1,5 +1,6 @@
 import os
 import tempfile
+import subprocess
 from xml.dom import minidom
 
 REPO = "https://github.com/EFForg/https-everywhere.git"
@@ -8,9 +9,9 @@ current_path = os.path.dirname(os.path.realpath(__file__))
 path = os.path.join(current_path, 'https-everywhere')
 
 if os.path.exists(path):
-    os.system('git -C ' + path + ' pull ' + REPO)
+    subprocess.call('git -C ' + path + ' pull ' + REPO, shell=True)
 else:
-    os.system('git clone ' + REPO + ' ' + path)
+    subprocess.call('git clone ' + REPO + ' ' + path, shell=True)
 
 path = os.path.join(path, "src/chrome/content/rules")
 
